@@ -13,9 +13,9 @@
       "type": "Microsoft.OperationsManagement/solutions",
       "location": "[resourceGroup().location]",
       "name": "[Concat('ProcessInvestigator(', parameters('workspaceName'), ')')]",
-      "id": "[Concat('/subscriptions/', subscription().subscription-id, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.OperationsManagement/solutions/ProcessInvestigator(', parameters('workspaceName'), ')')]",
+      "id": "[Concat('/subscriptions/', subscription().subscriptionId, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.OperationsManagement/solutions/ProcessInvestigator(', parameters('workspaceName'), ')')]",
       "properties": {
-        "workspaceResourceId": "[Concat('/subscriptions/', subscription().subscription-id, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.OperationalInsights/workspaces/', parameters('workspaceName'))]"
+        "workspaceResourceId": "[Concat('/subscriptions/', subscription().subscriptionId, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.OperationalInsights/workspaces/', parameters('workspaceName'))]"
       },
       "plan": {
         "name": "[Concat('ProcessInvestigator(', parameters('workspaceName'), ')')]",
