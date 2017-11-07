@@ -22,10 +22,6 @@
         "product": "OMSGallery/ProcessInvestigator",
         "promotionCode": "",
         "publisher": "Microsoft"
-      },
-      "copy": {
-        "name": "solutionsCopy",
-        "count": "1"
       }
     }
   ]
