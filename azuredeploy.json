@@ -2,18 +2,6 @@
   "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-    "location": {
-      "type": "string",
-      "defaultValue": ""
-    },
-    "resourcegroupName": {
-      "type": "string",
-      "defaultValue": ""
-    },
-    "subscriptionId": {
-      "type": "string",
-      "defaultValue": ""
-    },
     "workspaceName": {
       "type": "string",
       "defaultValue": ""
@@ -27,21 +15,21 @@
     {
       "apiVersion": "2015-11-01-preview",
       "type": "Microsoft.OperationsManagement/solutions",
-      "location": "[parameters('location')]",
-      "name": "[Concat(parameters('solutionTypes')[copyIndex()], '(', parameters('workspaceName'), ')')]",
-      "id": "[Concat('/subscriptions/', parameters('subscriptionId'), '/resourceGroups/', parameters('resourcegroupName'), '/providers/Microsoft.OperationsManagement/solutions/', parameters('solutionTypes')[copyIndex()], '(', parameters('workspaceName'), ')')]",
+      "location": "[resourceGroup().location]",
+      "name": "[Concat('ProcessInvestigator(', parameters('workspaceName'), ')')]",
+      "id": "[Concat('/subscriptions/', subscription().subscription-id, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.OperationsManagement/solutions/ProcessInvestigator(', parameters('workspaceName'), ')')]",
       "properties": {
-        "workspaceResourceId": "[Concat('/subscriptions/', parameters('subscriptionId'), '/resourceGroups/', parameters('resourcegroupName'), '/providers/Microsoft.OperationalInsights/workspaces/', parameters('workspaceName'))]"
+        "workspaceResourceId": "[Concat('/subscriptions/', subscription().subscription-id, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.OperationalInsights/workspaces/', parameters('workspaceName'))]"
       },
       "plan": {
-        "name": "[Concat(parameters('solutionTypes')[copyIndex()], '(', parameters('workspaceName'), ')')]",
-        "product": "[Concat('OMSGallery/', parameters('solutionTypes')[copyIndex()])]",
+        "name": "[Concat('ProcessInvestigator(', parameters('workspaceName'), ')')]",
+        "product": "OMSGallery/ProcessInvestigator",
         "promotionCode": "",
         "publisher": "Microsoft"
       },
       "copy": {
         "name": "solutionsCopy",
-        "count": "[length(parameters('solutionTypes'))]"
+        "count": "1"
       }
     }
   ]
